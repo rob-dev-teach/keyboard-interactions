@@ -2,6 +2,76 @@
 @import './vendor/normalize.css';
 @import './globals/globals.css';
 
-h1 {
-	color: var(--color-primary);
+html {
+	width: 100dvw;
+	height: 100dvh;
+	overflow: hidden;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.game {
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	--zi-background: 0;
+	--zi-floor: 1;
+	--zi-ground: 1;
+	--zi-character: 2;
+}
+
+.background {
+	width: 100%;
+	height: 100%;
+	background-image: url('../assets/background.png');
+	background-size: auto 100%;
+	background-position: top left;
+	background-repeat: repeat-x;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: var(--zi-background);
+}
+
+.ground {
+	width: 100%;
+	height: 20%;
+	background-image: url('../assets/ground.png');
+	position: absolute;
+	background-size: auto 50%;
+	background-position: top left;
+	top: 80%;
+	left: 0;
+	z-index: var(--zi-ground);
+}
+
+.floor {
+	width: 100%;
+	height: 10%;
+	background-image: url('../assets/floor.png');
+	background-size: auto 100%;
+	background-position: top left;
+	background-repeat: repeat-x;
+	position: absolute;
+	top: 70%;
+	left: 0;
+}
+
+.character {
+	width: auto;
+	height: 15%;
+	aspect-ratio: 1;
+	background-image: url('../assets/character-sprite.png');
+	background-size: 1000% 200%;
+	background-position: top left;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 57%;
+	left: 5%;
+	z-index: var(--zi-character);
 }
