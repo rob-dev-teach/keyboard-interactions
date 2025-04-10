@@ -58,13 +58,13 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
 	if (event.key === 'ArrowRight') {
 		isRightKeyPressed = false;
-		if (character.velocity === -1) return;
+		if (character.velocity < 0) return;
 		character.velocity = 0;
 		character.element.dataset.state = 'idle';
 	}
 	if (event.key === 'ArrowLeft') {
 		isLeftKeyPressed = false;
-		if (character.velocity === 1) return;
+		if (character.velocity > 0) return;
 		character.velocity = 0;
 		character.element.dataset.state = 'idle';
 	}
