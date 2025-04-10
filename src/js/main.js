@@ -19,9 +19,9 @@ const world = {
 const checkCollisions = () => {
 	const hitboxRect = character.hitbox.getBoundingClientRect();
 
-	if (hitboxRect.left < world.limitLeft) {
+	if (character.position.x < world.limitLeft) {
 		character.position.x = world.limitLeft;
-	} else if (hitboxRect.right > world.limitRight) {
+	} else if (character.position.x + hitboxRect.width > world.limitRight) {
 		character.position.x = world.limitRight - hitboxRect.width;
 	}
 };
