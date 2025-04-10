@@ -37,8 +37,10 @@ const checkCollisions = () => {
 
 	if (character.position.x < world.limitLeft) {
 		character.position.x = world.limitLeft;
+		character.move(0);
 	} else if (character.position.x + hitboxRect.width > world.limitRight) {
 		character.position.x = world.limitRight - hitboxRect.width;
+		character.move(0);
 	}
 };
 
