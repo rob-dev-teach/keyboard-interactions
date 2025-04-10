@@ -11,10 +11,26 @@ const character = {
 	velocity: 0,
 };
 
+character.move = (velocity) => {
+	character.velocity = velocity;
+	if (velocity === 0) {
+		character.element.dataset.state = 'idle';
+	} else {
+		character.element.dataset.state = 'running';
+
+		if (velocity > 0) {
+			character.element.dataset.dir = 'right';
+		}
+		if (velocity < 0) {
+			character.element.dataset.dir = 'left';
+		}
+	}
+};
+
 const world = {
 	limitLeft: 0,
 	limitRight: window.innerWidth,
-}
+};
 
 const checkCollisions = () => {
 	const hitboxRect = character.hitbox.getBoundingClientRect();
@@ -43,29 +59,23 @@ document.addEventListener('keydown', (event) => {
 	if (event.key === 'ArrowRight') {
 		if (isRightKeyPressed) return;
 		isRightKeyPressed = true;
-		character.velocity = 1;
-		character.element.dataset.dir = 'right';
-		character.element.dataset.state = 'running';
+		character.move(1);
 	}
 	if (event.key === 'ArrowLeft') {
 		if (isLeftKeyPressed) return;
 		isLeftKeyPressed = true;
-		character.velocity = -1;
-		character.element.dataset.dir = 'left';
-		character.element.dataset.state = 'running';
+		character.move(-1);
 	}
 });
 document.addEventListener('keyup', (event) => {
 	if (event.key === 'ArrowRight') {
 		isRightKeyPressed = false;
 		if (character.velocity < 0) return;
-		character.velocity = 0;
-		character.element.dataset.state = 'idle';
+		character.move(0);
 	}
 	if (event.key === 'ArrowLeft') {
 		isLeftKeyPressed = false;
 		if (character.velocity > 0) return;
-		character.velocity = 0;
-		character.element.dataset.state = 'idle';
+		character.move(0);
 	}
 });
