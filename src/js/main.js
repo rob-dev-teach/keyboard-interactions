@@ -6,7 +6,7 @@ const character = {
 		x: 0,
 		y: 0,
 	},
-	speed: 3,
+	speed: 5,
 	velocity: 0,
 };
 
@@ -21,17 +21,21 @@ document.addEventListener('keydown', (event) => {
 	if (event.key === 'ArrowRight') {
 		character.velocity = 1;
 		character.element.dataset.dir = 'right';
+		character.element.dataset.state = 'running';
 	}
 	if (event.key === 'ArrowLeft') {
 		character.velocity = -1;
 		character.element.dataset.dir = 'left';
+		character.element.dataset.state = 'running';
 	}
 });
 document.addEventListener('keyup', (event) => {
 	if (event.key === 'ArrowRight') {
 		character.velocity = 0;
+		character.element.dataset.state = 'idle';
 	}
 	if (event.key === 'ArrowLeft') {
 		character.velocity = 0;
+		character.element.dataset.state = 'idle';
 	}
 });
