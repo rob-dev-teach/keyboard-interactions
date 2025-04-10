@@ -36,13 +36,20 @@ const animate = () => {
 
 gsap.ticker.add(animate);
 
+let isLeftKeyPressed = false;
+let isRightKeyPressed = false;
+
 document.addEventListener('keydown', (event) => {
 	if (event.key === 'ArrowRight') {
+		if (isRightKeyPressed) return;
+		isRightKeyPressed = true;
 		character.velocity = 1;
 		character.element.dataset.dir = 'right';
 		character.element.dataset.state = 'running';
 	}
 	if (event.key === 'ArrowLeft') {
+		if (isLeftKeyPressed) return;
+		isLeftKeyPressed = true;
 		character.velocity = -1;
 		character.element.dataset.dir = 'left';
 		character.element.dataset.state = 'running';
@@ -50,11 +57,13 @@ document.addEventListener('keydown', (event) => {
 });
 document.addEventListener('keyup', (event) => {
 	if (event.key === 'ArrowRight') {
+		isRightKeyPressed = false;
 		if (character.velocity === -1) return;
 		character.velocity = 0;
 		character.element.dataset.state = 'idle';
 	}
 	if (event.key === 'ArrowLeft') {
+		isLeftKeyPressed = false;
 		if (character.velocity === 1) return;
 		character.velocity = 0;
 		character.element.dataset.state = 'idle';
