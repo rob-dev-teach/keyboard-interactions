@@ -20,9 +20,11 @@ gsap.ticker.add(animate);
 document.addEventListener('keydown', (event) => {
 	if (event.key === 'ArrowRight') {
 		character.velocity = 1;
+		character.element.dataset.dir = 'right';
 	}
 	if (event.key === 'ArrowLeft') {
 		character.velocity = -1;
+		character.element.dataset.dir = 'left';
 	}
 });
 document.addEventListener('keyup', (event) => {

@@ -74,4 +74,8 @@ body {
 	top: 57%;
 	left: 5%;
 	z-index: var(--zi-character);
+
+	&[data-dir='left'] {
+		scale: -1 1;
+	}
 }
