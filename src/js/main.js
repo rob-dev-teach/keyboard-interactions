@@ -12,6 +12,8 @@ const character = {
 		x: 0,
 		y: 0,
 	},
+	jumpVelocity: 35,
+	weight: 1,
 };
 
 character.move = (velocity) => {
@@ -62,6 +64,11 @@ const animate = () => {
 
 	character.element.style.left = `${character.position.x}px`;
 	character.element.style.top = `${character.position.y}px`;
+
+	// apply weight
+	if (character.velocity.y < 0) {
+		character.velocity.y += character.weight * gsap.ticker.deltaRatio();
+	}
 };
 
 gsap.ticker.add(animate);
@@ -79,6 +86,11 @@ document.addEventListener('keydown', (event) => {
 		if (isLeftKeyPressed) return;
 		isLeftKeyPressed = true;
 		character.move(-1);
+	}
+	if (event.key === 'ArrowUp' || event.key === ' ') {
+		if (character.velocity.y === 0) {
+			character.velocity.y = -character.jumpVelocity;
+		};
 	}
 });
 document.addEventListener('keyup', (event) => {
