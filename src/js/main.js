@@ -34,6 +34,7 @@ const world = {
 	limitLeft: 0,
 	limitRight: window.innerWidth,
 	gravity: 15,
+	floor: document.querySelector('.floor').getBoundingClientRect().top,
 };
 
 const checkCollisions = () => {
@@ -45,6 +46,11 @@ const checkCollisions = () => {
 	} else if (character.position.x + hitboxRect.width > world.limitRight) {
 		character.position.x = world.limitRight - hitboxRect.width;
 		character.move(0);
+	}
+
+	if (character.position.y + hitboxRect.height > world.floor) {
+		character.position.y = world.floor - hitboxRect.height;
+		character.velocity.y = 0;
 	}
 };
 
