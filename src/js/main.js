@@ -33,6 +33,7 @@ character.move = (velocity) => {
 const world = {
 	limitLeft: 0,
 	limitRight: window.innerWidth,
+	gravity: 15,
 };
 
 const checkCollisions = () => {
@@ -49,10 +50,12 @@ const checkCollisions = () => {
 
 const animate = () => {
 	character.position.x += character.speed * character.velocity.x * gsap.ticker.deltaRatio();
+	character.position.y += (world.gravity + character.velocity.y) * gsap.ticker.deltaRatio();
 
 	checkCollisions();
 
 	character.element.style.left = `${character.position.x}px`;
+	character.element.style.top = `${character.position.y}px`;
 };
 
 gsap.ticker.add(animate);

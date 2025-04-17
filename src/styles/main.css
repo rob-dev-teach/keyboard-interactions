@@ -71,7 +71,7 @@ body {
 	background-position: 0% 0%;
 	background-repeat: no-repeat;
 	position: absolute;
-	top: 57%;
+	top: 0;
 	left: 5%;
 	z-index: var(--zi-character);
 
