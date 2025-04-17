@@ -8,11 +8,14 @@ const character = {
 		y: 0,
 	},
 	speed: 5,
-	velocity: 0,
+	velocity: {
+		x: 0,
+		y: 0,
+	},
 };
 
 character.move = (velocity) => {
-	character.velocity = velocity;
+	character.velocity.x = velocity;
 	if (velocity === 0) {
 		character.element.dataset.state = 'idle';
 	} else {
@@ -45,7 +48,7 @@ const checkCollisions = () => {
 };
 
 const animate = () => {
-	character.position.x += character.speed * character.velocity * gsap.ticker.deltaRatio();
+	character.position.x += character.speed * character.velocity.x * gsap.ticker.deltaRatio();
 
 	checkCollisions();
 
@@ -72,12 +75,12 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
 	if (event.key === 'ArrowRight') {
 		isRightKeyPressed = false;
-		if (character.velocity < 0) return;
+		if (character.velocity.x < 0) return;
 		character.move(0);
 	}
 	if (event.key === 'ArrowLeft') {
 		isLeftKeyPressed = false;
-		if (character.velocity > 0) return;
+		if (character.velocity.x > 0) return;
 		character.move(0);
 	}
 });
